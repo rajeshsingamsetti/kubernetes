@@ -1,0 +1,161 @@
+    1  clear
+    2  systemctl status docker
+    3  kubeadm init
+    4  kubeadm reset
+    5  ls
+    6  kubeadm init --ignore-preflight-errors all
+    7  systemctl status kubelet
+    8  sed -i "s/cgroupDriver: systemd/cgroupDriver: cgroupfs/g" /var/lib/kubelet/config.yaml
+    9  systemctl daemon-reload
+   10  systemctl restart kubelet
+   11  systemctl status kubelet
+   12  systemctl status docker
+   13  clear
+   14  kubeadm init --ignore-preflight-errors all
+   15  ls
+   16  mkdir -p $HOME/.kube
+   17   sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+   18  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+   19  kubectl apply -f https://docs.projectcalico.org/v3.8/manifests/calico.yaml
+   20  kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+   21  sudo kubectl get nodes
+   22  sudo kubectl get pods --all-namespaces
+   23  clear
+   24  sudo kubectl get pods --all-namespaces
+   25  clear
+   26  history
+   27  sudo kubectl get pods --all-namespaces
+   28  clear
+   29  sudo kubectl get pods --all-namespaces
+   30  kubectl get nodes
+   31  sudo kubectl get pods --all-namespaces
+   32  clear
+   33  wget https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/rbac-kdd.yaml
+   34  yum install wget
+   35  wget https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/rbac-kdd.yaml
+   36  ls
+   37  wget https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/kubernetes-datastore/calico-networking/1.7/calico.yaml
+   38  ls
+   39  kubectl apply -f rbac-kdd.yaml
+   40  kubectl apply -f calico.yaml
+   41  rm -rf calico.yaml
+   42  curl https://docs.projectcalico.org/manifests/calico.yaml -O
+   43  ls
+   44  kubectl apply -f calico.yaml
+   45  sudo kubectl get pods --all-namespaces
+   46  clear
+   47  sudo kubectl get pods --all-namespaces
+   48  clear
+   49  sudo kubectl get pods --all-namespaces
+   50  kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+   51  sudo kubectl get pods --all-namespaces
+   52  sudo kubectl get pods
+   53  sudo kubectl network ls
+   54   kubectl network --help
+   55   kubectl network -help
+   56   kubectl get namespace
+   57  kubectl delete namespace kube-system
+   58* kubectl delete kub
+   59   kubectl get namespace
+   60   kubectl delete -n kube-system
+   61  sudo kubectl get pods --all-namespaces
+   62  rm /opt/cni/bin/weave-*
+   63  kubeadm reset
+   64  sudo kubectl get pods --all-namespaces
+   65  clear
+   66  yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+   67  systemctl enable --now kubelet
+   68  kubeadm init --ignore-preflight-errors all
+   69  sed -i "s/cgroupDriver: systemd/cgroupDriver: cgroupfs/g" /var/lib/kubelet/config.yaml
+   70  systemctl daemon-reload
+   71  systemctl restart kubelet
+   72  kubeadm init --ignore-preflight-errors all
+   73  mkdir -p $HOME/.kube
+   74  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+   75  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+   76  kubectl get nodes
+   77  yum update -y
+   78  sudo systemctl enable docker.service
+   79  sudo service kubelet restart
+   80  kubectl get nodes
+   81  ls
+   82  ls -la
+   83  rm -rf .kube/
+   84   mkdir -p $HOME/.kube
+   85   sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+   86  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+   87  kubectl get nodes
+   88  kubectl get pods --all-namespaces
+   89  kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+   90  kubectl get nodes
+   91  kubectl get pods --all-namespaces
+   92  watch kubectl get pods -all-namespaces
+   93  watch kubectl get pods --all-namespaces
+   94  clear
+   95  kubectl get pods
+   96  kubectl get nodes
+   97  kubeadm reset
+   98  yum remove kubelet kubeadm kubectl
+   99  ls -la
+  100  rm -rf .kube/ rbac-kdd.yaml calico.yaml
+  101  ls
+  102  systemctl status docker
+  103  cat <<EOF > /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+exclude=kube*
+EOF
+
+  104  setenforce 0
+  105  sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
+  106  yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+  107  systemctl enable --now kubelet
+  108  clear
+  109  ifconfig -a
+  110  cat /etc/sysconfig/network-scripts/ifcg-enp0s8
+  111  cat /etc/sysconfig/network-scripts/ifcfg-enp0s8
+  112  cat /etc/sysconfig/network-scripts/ifcfg-enp0s3
+  113  ifconfig -a
+  114*
+  115  systemctl restart network
+  116  ifconfig -a
+  117  kubeadm init --apiserver-advertise-address=192.168.0.135 --pod-network-cidr=192.168.0.0/16
+  118  systemctl status docker
+  119  sudo vi /etc/sysctl.conf
+  120  kubeadm init --apiserver-advertise-address=192.168.0.135 --pod-network-cidr=192.168.0.0/16
+  121  sudo sysctl -p
+  122  kubeadm init --apiserver-advertise-address=192.168.0.135 --pod-network-cidr=192.168.0.0/16
+  123  kubeadm reset
+  124  ls -la
+  125  rm -rf .kube
+  126  sudo sysctl -p
+  127  kubeadm init --apiserver-advertise-address=192.168.0.135 --pod-network-cidr=192.168.0.0/16
+  128  kubeadm init --ignore-preflight-errors all
+  129   failed with error: Get "http://localhost:10248/healthz": dial tcp [::1]:10248: connect: connection refused.
+  130  kubeadm init --ignore-preflight-errors all
+  131  kubeadm reset
+  132  sudo mkdir /etc/docker
+  133  cat /etc/docker/
+  134  cd /etc/docker/
+  135  ls
+  136  vi daemon.json
+  137  sudo systemctl enable docker
+  138  sudo systemctl daemon-reload
+  139  sudo systemctl restart docker
+  140  cd
+  141  systemctl status docker
+  142  kubeadm init --ignore-preflight-errors all
+  143   mkdir -p $HOME/.kube
+  144  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  145  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+  146  ls -la
+  147  kubectl get pods --all-namespaces
+  148  kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+  149  kubectl get nodes
+  150  kubectl get pods --all-namespaces
+  151  history
